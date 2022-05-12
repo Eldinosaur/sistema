@@ -1,0 +1,60 @@
+<mat-nav-list fxLayout="column" fxLayoutAlign="space-between">
+  <div>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                  <img src="/assets/icons/agencias.svg" alt="">
+                  <span *ngIf="expanded">Agencias</span>
+              </button>
+          </a>
+      </mat-list-item>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                <img src="/assets/icons/canales.svg" alt="">
+                  <span *ngIf="expanded">Canales</span>
+              </button>
+          </a>
+      </mat-list-item>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                <img src="/assets/icons/clientes.svg" alt="">
+                  <span *ngIf="expanded">Clientes</span>
+              </button>
+          </a>
+      </mat-list-item>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                <img src="/assets/icons/empleados.svg" alt="">
+                  <span *ngIf="expanded">Empleados</span>
+              </button>
+          </a>
+      </mat-list-item>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                <img src="/assets/icons/quejas.svg" alt="">
+                  <span *ngIf="expanded">Quejas y Reclamos</span>
+              </button>
+          </a>
+      </mat-list-item>
+      <mat-list-item>
+          <a [routerLink]="url">
+              <button mat-icon-button>
+                <img src="/assets/icons/seguimiento.svg" alt="">
+                  <span *ngIf="expanded">Seguimiento</span>
+              </button>
+          </a>
+      </mat-list-item>
+  </div>
+  <div>
+      <mat-list-item>
+          <button mat-icon-button color="accent" (click)="toggleExpanded()">
+              <img *ngIf="expanded" src="/assets/icons/flecha1.svg" alt="">
+              <img *ngIf="!expanded" src="/assets/icons/flecha2.svg" alt="">
+          </button>
+      </mat-list-item>
+  </div>
+</mat-nav-list>
