@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { IMenu, MenuService } from '../../../services/menu.service';
 
 @Component({
   selector: 'qr-menu',
@@ -7,10 +8,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @Output() onToggleExpanded: EventEmitter<boolean> = new EventEmitter<boolean>()
-  url=""
+  listMenu:IMenu[]
   expanded=true
 
-  constructor() { }
+  constructor( private menuService:MenuService) {
+    this.listMenu = menuService.getMenu()
+   }
 
   ngOnInit(): void {
   }
