@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 
+import { CanalesRoutingModule } from './canales-routing.module';
+import { PageListComponent } from './pages/page-list/page-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PageListComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule
+    CanalesRoutingModule,
+    SharedModule
   ]
 })
 export class CanalesModule { }

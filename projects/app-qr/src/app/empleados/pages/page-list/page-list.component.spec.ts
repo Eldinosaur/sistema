@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PageCanalComponent } from './page-canal.component';
+import { PageListComponent } from './page-list.component';
 
-describe('PageCanalComponent', () => {
-  let component: PageCanalComponent;
-  let fixture: ComponentFixture<PageCanalComponent>;
+describe('PageListComponent', () => {
+  let component: PageListComponent;
+  let fixture: ComponentFixture<PageListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PageCanalComponent ]
+      declarations: [ PageListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageCanalComponent);
+    fixture = TestBed.createComponent(PageListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
