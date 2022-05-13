@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface IData{
   id: number,
@@ -11,14 +11,16 @@ interface IData{
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  data:IData[]=[
+  @Input() data:any
+  @Input() columns!:string[] //con el ! ya no es necesario incializar la variable pero nunca esta vacio
+  /*data:IData[]=[
     {id:1,agency:'Ambato'},
     {id:2,agency:'Quito'},
     {id:3,agency:'Guayaquil'},
     {id:4,agency:'Cuenca'},
     {id:5,agency:'Riobamba'}
   ]
-  listFields:string[]=['id','agency']
+  listFields:string[]=['id','agency'] */
 
   constructor() { }
 
