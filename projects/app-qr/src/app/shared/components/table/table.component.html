@@ -1,20 +1,12 @@
 <div fxLayout="column">
+  <ng-content></ng-content>
   <table mat-table [dataSource]="data">
+      <ng-container [matColumnDef]="metaData.field" *ngFor="let metaData of metaDataColumns">
+          <th mat-header-cell *matHeaderCellDef>{{ metaData.title }}</th>
+          <td mat-cell *matCellDef="let row">{{ row[metaData.field] }}</td>
+      </ng-container>
 
-    <ng-container [matColumnDef]="metaData.field" *ngFor="let metaData of metaDataColumns">
-      <th mat-header-cell *matHeaderCellDef>{{ metaData.title }}</th>
-      <td mat-cell *matCellDef="let row">{{ row[metaData.field] }}</td>
-    </ng-container>
-
-    <!--<ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef>ID</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
-    <ng-container matColumnDef="agency">
-      <th mat-header-cell *matHeaderCellDef>Agencia</th>
-      <td mat-cell *matCellDef="let row">{{row.agency}}</td>
-    </ng-container>-->
-    <tr mat-header-row *matHeaderRowDef="columns" sticky:true></tr><!--sticky mejora la vista de la tabla-->
-    <tr mat-row *matRowDef="let row; columns:columns" class="highline"></tr>
+  <tr mat-header-row *matHeaderRowDef="columns; sticky:true"></tr>
+      <tr mat-row *matRowDef="let row; columns:columns" class="highline"></tr>
   </table>
 </div>

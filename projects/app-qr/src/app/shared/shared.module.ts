@@ -6,11 +6,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
-import {MatTableModule} from '@angular/material/table';
+import {MatTable, MatTableModule} from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import {PerfectScrollbarConfigInterface ,PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
@@ -39,7 +42,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     ContainerComponent,
     TableComponent,
     PerfectScrollbarModule,
-    PaginatorComponent
+    PaginatorComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatTableModule
   ],
   providers:[
     {provide:PERFECT_SCROLLBAR_CONFIG,

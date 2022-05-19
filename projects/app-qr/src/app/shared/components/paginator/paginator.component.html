@@ -1,5 +1,7 @@
 <mat-paginator
-    length="200"
-    pageSize="20"
+    [length]="length"
+    [pageSize]="pageSize"
     showFirstLastButtons="true"
-    (page)="changePage()"></mat-paginator>
+    (page)="changePage($event)"
+    [pageIndex]="currentPage">
+</mat-paginator>
