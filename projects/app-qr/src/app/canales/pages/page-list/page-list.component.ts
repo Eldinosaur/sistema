@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface';
 
 @Component({
   selector: 'qr-page-list',
@@ -14,7 +15,12 @@ data:any[]=[
   {id:4,canal:'Cartas',descripcion:'Recepcion de quejas por cartas'},
   {id:5,canal:'Oficio', descripcion:'Recepcion de quejas por medio de un oficio escrito'}
 ]
-listFields:string[]=['id','canal', 'descripcion']
+//listFields:string[]=['id','canal', 'descripcion']
+metaDataColumns:MetaDataColumn[]=[
+  {field:"id", title:"ID"},
+  {field:"canal", title:"CANALES"},
+  {field:"descripcion",title:"DESCRIPCION"}
+]
   constructor() { }
 
   ngOnInit(): void {

@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { MetaDataColumn } from '../../interfaces/metacolumn.interface';
 
 interface IData{
   id: number,
@@ -12,7 +13,10 @@ interface IData{
 })
 export class TableComponent implements OnInit {
   @Input() data:any
-  @Input() columns!:string[] //con el ! ya no es necesario incializar la variable pero nunca esta vacio
+  @Input() metaDataColumns!:MetaDataColumn[]
+
+  columns:string[]=[]
+  //con el ! ya no es necesario incializar la variable pero nunca esta vacio
   /*data:IData[]=[
     {id:1,agency:'Ambato'},
     {id:2,agency:'Quito'},
@@ -25,6 +29,10 @@ export class TableComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes:SimpleChanges){
+    this.columns = this.metaDataColumns.map((x)=>x.field)
   }
 
 }

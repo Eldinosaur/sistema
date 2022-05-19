@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface';
 
 @Component({
   selector: 'qr-page-list',
@@ -14,7 +15,15 @@ export class PageListComponent implements OnInit {
     {cedula:'1804',nombre:'Adriana',apellido:'Naranjo',fechanacimiento:'26-10-2009',celular:'0999',correo:'adnar@example.com'},
     {cedula:'1805',nombre:'Nicole',apellido:'Vaca',fechanacimiento:'03-12-2003',celular:'0977',correo:'nvaca@example.com'}
   ]
-  listFields:string[]=['cedula','nombre','apellido','fechanacimiento','celular','correo']
+  //listFields:string[]=['cedula','nombre','apellido','fechanacimiento','celular','correo']
+  metaDataColumns:MetaDataColumn[]=[
+    {field:"cedula", title:"CEDULA"},
+    {field:"nombre", title:"NOMBRE"},
+    {field:"apellido",title:"APELLIDO"},
+    {field:"fechanacimiento",title:"FECHA DE NACIMIENTO"},
+    {field:"celular",title:"N° CELULAR"},
+    {field:"correo",title:"DIRECCION CORREO"}
+  ]
 
   constructor() { }
 
