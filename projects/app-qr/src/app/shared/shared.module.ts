@@ -9,6 +9,9 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import { TableComponent } from './components/table/table.component';
 import {PerfectScrollbarConfigInterface ,PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
+import { PaginatorComponent } from './components/paginator/paginator.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
   suppressScrollX:true
@@ -18,7 +21,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
   declarations: [
     TitleComponent,
     ContainerComponent,
-    TableComponent
+    TableComponent,
+    PaginatorComponent
   ],
   imports: [
     CommonModule,
@@ -27,13 +31,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     FlexLayoutModule,
     MatCardModule,
     MatTableModule,
+    MatPaginatorModule
 
   ],
   exports: [
     TitleComponent,
     ContainerComponent,
     TableComponent,
-    PerfectScrollbarModule
+    PerfectScrollbarModule,
+    PaginatorComponent
   ],
   providers:[
     {provide:PERFECT_SCROLLBAR_CONFIG,
