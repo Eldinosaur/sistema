@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'projects/app-qr/src/environments/environment';
 import { ConfirmComponent } from '../../../shared/components/confirm/confirm.component';
+import { DownloadComponent } from '../../../shared/components/download/download.component';
 import { KeypadButton } from '../../../shared/interfaces/keybutton.interface';
 import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface';
 
@@ -75,7 +77,8 @@ export class PageListComponent implements OnInit {
 
   constructor(
     private dialog:MatDialog,
-    private snackBar:MatSnackBar
+    private snackBar:MatSnackBar,
+    private bottomSheet:MatBottomSheet
   ) {
     this.changePage(0)
    }
@@ -115,11 +118,17 @@ export class PageListComponent implements OnInit {
   doAction(action:string){
     switch(action){
       case 'DOWNLOAD':
+        this.showBottomSheet("Lista de Agencias","agencias",this.recordsAgency)
+        //como hacer que se exporte la data D:
         break
       case 'NEW':
         this.openForm()
         break
     }
+  }
+
+  showBottomSheet(title:string, fileName:string, data:any){
+    this.bottomSheet.open(DownloadComponent)
   }
 
 
