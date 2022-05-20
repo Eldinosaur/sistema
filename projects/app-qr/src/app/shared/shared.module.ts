@@ -13,6 +13,12 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmComponent } from './components/confirm/confirm.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { KeypadButtonComponent } from './components/keypad-button/keypad-button.component';
+
+
 
 
 
@@ -25,7 +31,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     TitleComponent,
     ContainerComponent,
     TableComponent,
-    PaginatorComponent
+    PaginatorComponent,
+    ConfirmComponent,
+    KeypadButtonComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +42,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     FlexLayoutModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatTooltipModule
 
   ],
   exports: [
@@ -46,7 +58,11 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    KeypadButtonComponent
   ],
   providers:[
     {provide:PERFECT_SCROLLBAR_CONFIG,

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'projects/app-qr/src/environments/environment';
+import { ConfirmComponent } from '../../../shared/components/confirm/confirm.component';
+import { KeypadButton } from '../../../shared/interfaces/keybutton.interface';
 import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface';
 
 @Component({
@@ -63,7 +67,16 @@ export class PageListComponent implements OnInit {
   ]
   dataAgency:any[]=[]
   totalRecords= this.recordsAgency.length
-  constructor() {
+
+  keypadButtons:KeypadButton[]=[
+    {icon:"cloud_download", tooltip:"Exportar", color:"accent",action:"DOWNLOAD"},
+    {icon:"add", tooltip:"Agregar", color:"primary",action:"NEW"}
+  ]
+
+  constructor(
+    private dialog:MatDialog,
+    private snackBar:MatSnackBar
+  ) {
     this.changePage(0)
    }
 
@@ -76,22 +89,38 @@ export class PageListComponent implements OnInit {
     this.dataAgency = this.recordsAgency.slice(skip,skip+pageSize)
   }
 
-  openForm(row:any){
+  openForm(row:any=null){
 
   }
 
   delete(id:number){
+    const reference:MatDialogRef<ConfirmComponent> = this.dialog.open(
+      ConfirmComponent,
+      {width:"320px",disableClose:true})
 
+    reference.componentInstance.message="Está seguro de eliminar la Agencia"
+    reference.afterClosed().subscribe((result) => {
+      if(!result){return}
+      const position = this.recordsAgency.findIndex(el => el.id === id)
+      this.recordsAgency.splice(position,1)
+      this.changePage(0)
+      this.showMessage("Eliminado correctamente")
+
+    })
   }
 
-  //clientes
-  //cedula-nombre-apellido-fecha de nacimiento-celular-correo
-
-  //empleados
-  //cedula-nombre-apellido-cargo-correo
-
-  //canales
-  //id-canal-descripcion
+  showMessage(message:string, duration:number=5000){
+    this.snackBar.open(message,'',{duration})
+  }
+  doAction(action:string){
+    switch(action){
+      case 'DOWNLOAD':
+        break
+      case 'NEW':
+        this.openForm()
+        break
+    }
+  }
 
 
 }
