@@ -20,6 +20,7 @@ import { KeypadButtonComponent } from './components/keypad-button/keypad-button.
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { DownloadComponent } from './components/download/download.component';
 import { MatListModule } from '@angular/material/list';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 
 
@@ -38,7 +39,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     PaginatorComponent,
     ConfirmComponent,
     KeypadButtonComponent,
-    DownloadComponent
+    DownloadComponent,
+
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     MatSnackBarModule,
     MatTooltipModule,
     MatBottomSheetModule,
-    MatListModule
+    MatListModule,
+
 
   ],
   exports: [
@@ -70,7 +73,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     MatButtonModule,
     MatSnackBarModule,
     KeypadButtonComponent,
-    DownloadComponent
+    DownloadComponent,
+    MatTableExporterModule,
+
   ],
   providers:[
     {provide:PERFECT_SCROLLBAR_CONFIG,
