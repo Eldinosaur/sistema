@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from "xlsx";
+import * as jspdf from 'jspdf';
+import { UserOptions } from 'jspdf-autotable';
+import 'jspdf-autotable';
+
+interface jsPDFWithPlugin extends jspdf.jsPDF {
+  autoTable: (options: UserOptions) => jspdf.jsPDF;
+}
 
 @Component({
   selector: 'qr-download',
@@ -61,6 +68,60 @@ export class DownloadComponent implements OnInit {
   }
 
   export(){
+    const doc = new jspdf.jsPDF('portrait', 'mm', 'a4') as jsPDFWithPlugin;
+
+    doc.autoTable({
+      head: [['Id', 'Agencia', 'Direccion']],
+      body: [
+        [1, 'Ambato', 'Calle A'],
+        [2, 'Quito', 'Calle B'],
+        [3, 'Riobamba', 'Calle C'],
+        [4, 'Guayaquil', 'Calle D'],
+        [5, 'Cuenca', 'Calle E'],
+        [6, 'Ambato', 'Calle A'],
+        [7, 'Quito', 'Calle B'],
+        [8, 'Riobamba', 'Calle C'],
+        [9, 'Guayaquil', 'Calle D'],
+        [10, 'Cuenca', 'Calle E'],
+        [11, 'Ambato', 'Calle A'],
+        [12, 'Quito', 'Calle B'],
+        [13, 'Riobamba', 'Calle C'],
+        [14, 'Guayaquil', 'Calle D'],
+        [15, 'Cuenca', 'Calle E'],
+        [16, 'Ambato', 'Calle A'],
+        [17, 'Quito', 'Calle B'],
+        [18, 'Riobamba', 'Calle C'],
+        [19, 'Guayaquil', 'Calle D'],
+        [20, 'Cuenca', 'Calle E'],
+        [21, 'Ambato', 'Calle A'],
+        [22, 'Quito', 'Calle B'],
+        [23, 'Riobamba', 'Calle C'],
+        [24, 'Guayaquil', 'Calle D'],
+        [25, 'Cuenca', 'Calle E'],
+        [26, 'Ambato', 'Calle A'],
+        [27, 'Quito', 'Calle B'],
+        [28, 'Riobamba', 'Calle C'],
+        [29, 'Guayaquil', 'Calle D'],
+        [30, 'Cuenca', 'Calle E'],
+        [31, 'Ambato', 'Calle A'],
+        [32, 'Quito', 'Calle B'],
+        [33, 'Riobamba', 'Calle C'],
+        [34, 'Guayaquil', 'Calle D'],
+        [35, 'Cuenca', 'Calle E'],
+        [36, 'Ambato', 'Calle A'],
+        [37, 'Quito', 'Calle B'],
+        [38, 'Riobamba', 'Calle C'],
+        [39, 'Guayaquil', 'Calle D'],
+        [40, 'Cuenca', 'Calle E'],
+        [41, 'Ambato', 'Calle A'],
+        [42, 'Quito', 'Calle B'],
+        [43, 'Riobamba', 'Calle C'],
+        [44, 'Guayaquil', 'Calle D'],
+        [45, 'Cuenca', 'Calle E'],
+      ],
+    });
+
+    doc.save('Agencias.pdf');
 
   }
   exportExcel(){
