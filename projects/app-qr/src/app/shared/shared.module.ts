@@ -21,6 +21,9 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { DownloadComponent } from './components/download/download.component';
 import { MatListModule } from '@angular/material/list';
 import { MatTableExporterModule } from 'mat-table-exporter';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 
 
@@ -75,7 +78,10 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     KeypadButtonComponent,
     DownloadComponent,
     MatTableExporterModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    FlexLayoutModule,
+    MatInputModule
 
   ],
   providers:[

@@ -16,7 +16,7 @@ import { AgenciaService } from '../../services/agencia.service';
   styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
-  /*recordsAgency:any[] = [
+  /* recordsAgency:any[] = [
     {id:1, agency:'Ambato', address:'Calle A'},
     {id:2, agency:'Quito', address:'Calle B'},
     {id:3, agency:'Riobamba', address:'Calle C'},
@@ -62,7 +62,7 @@ export class PageListComponent implements OnInit {
     {id:43, agency:'Riobamba', address:'Calle C'},
     {id:44, agency:'Guayaquil', address:'Calle D'},
     {id:45, agency:'Cuenca', address:'Calle E'},
-  ]*/
+  ] */
   //listFields:string[] = ['id','agency','address']
   metaDataColumns: MetaDataColumn[] = [
     {field:"_id", title:"ID"},
@@ -74,9 +74,9 @@ export class PageListComponent implements OnInit {
   //totalRecords= this.recordsAgency.length
   totalRecords=0
 
-  keypadButtons:KeypadButton[]=[
-    {icon:"cloud_download", tooltip:"Exportar", color:"accent",action:"DOWNLOAD"},
-    {icon:"add", tooltip:"Agregar", color:"primary",action:"NEW"}
+  keypadButtons:KeypadButton[] = [
+    {icon:"cloud_download",tooltip:"EXPORTAR",color:"accent",action:"DOWNLOAD"},
+    {icon:"add",tooltip:"AGREGAR",color:"primary",action:"NEW"},
   ]
 
   constructor(
@@ -98,7 +98,32 @@ export class PageListComponent implements OnInit {
   }
 
   openForm(row:any=null){
-    this.dialog.open(FormComponent)
+    const options = {
+      panelClass: 'panel-container',
+      disableClose:true,
+      data: row
+    }
+    const reference: MatDialogRef<FormComponent> = this.dialog.open(FormComponent,options)
+
+    reference.afterClosed().subscribe((response) => {
+      if(!response){return}
+
+      if(response.id){
+        const agency = { ...response}
+        this.agencyService.updateAgency(response.id, agency).subscribe(() => {
+          this.changePage(0)
+          this.showMessage('Registro Actualizado')
+        })
+
+      }else{
+        const agency = { ...response}
+        this.agencyService.addAgency(agency).subscribe(() => {
+          this.changePage(0)
+          this.showMessage('Registro exitoso')
+
+        })
+      }
+    })
   }
 
   delete(id:number){
@@ -120,11 +145,11 @@ export class PageListComponent implements OnInit {
   showMessage(message:string, duration:number=5000){
     this.snackBar.open(message,'',{duration})
   }
+
   doAction(action:string){
     switch(action){
       case 'DOWNLOAD':
         this.showBottomSheet("Lista de Agencias","agencias",this.recordsAgency)
-        //como hacer que se exporte la data D:
         break
       case 'NEW':
         this.openForm()
@@ -135,14 +160,16 @@ export class PageListComponent implements OnInit {
   showBottomSheet(title:string, fileName:string, data:any){
     this.bottomSheet.open(DownloadComponent)
   }
-  loadAgencies(){
+
+  loadAgencies() {
     this.agencyService.loadAgencies().subscribe(data => {
       this.recordsAgency = data
       this.totalRecords = this.recordsAgency.length
       this.changePage(0)
-    }, error =>{
+    }, error => {
       console.log(error)
     })
   }
+
 
 }
