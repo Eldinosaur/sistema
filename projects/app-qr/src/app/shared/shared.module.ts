@@ -75,6 +75,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG:PerfectScrollbarConfigInterface = {
     KeypadButtonComponent,
     DownloadComponent,
     MatTableExporterModule,
+    MatToolbarModule
 
   ],
   providers:[

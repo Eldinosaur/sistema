@@ -7,6 +7,8 @@ import { ConfirmComponent } from '../../../shared/components/confirm/confirm.com
 import { DownloadComponent } from '../../../shared/components/download/download.component';
 import { KeypadButton } from '../../../shared/interfaces/keybutton.interface';
 import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface';
+import { FormComponent } from '../../components/form/form.component';
+import { AgenciaService } from '../../services/agencia.service';
 
 @Component({
   selector: 'qr-page-list',
@@ -14,7 +16,7 @@ import { MetaDataColumn } from '../../../shared/interfaces/metacolumn.interface'
   styleUrls: ['./page-list.component.css']
 })
 export class PageListComponent implements OnInit {
-  recordsAgency:any[] = [
+  /*recordsAgency:any[] = [
     {id:1, agency:'Ambato', address:'Calle A'},
     {id:2, agency:'Quito', address:'Calle B'},
     {id:3, agency:'Riobamba', address:'Calle C'},
@@ -60,15 +62,17 @@ export class PageListComponent implements OnInit {
     {id:43, agency:'Riobamba', address:'Calle C'},
     {id:44, agency:'Guayaquil', address:'Calle D'},
     {id:45, agency:'Cuenca', address:'Calle E'},
-  ]
+  ]*/
   //listFields:string[] = ['id','agency','address']
   metaDataColumns: MetaDataColumn[] = [
-    {field:"id", title:"ID"},
-    {field:"agency", title:"AGENCIA"},
+    {field:"_id", title:"ID"},
+    {field:"name", title:"AGENCIA"},
     {field:"address", title:"DIRECCION"},
   ]
+  recordsAgency:any[]=[]
   dataAgency:any[]=[]
-  totalRecords= this.recordsAgency.length
+  //totalRecords= this.recordsAgency.length
+  totalRecords=0
 
   keypadButtons:KeypadButton[]=[
     {icon:"cloud_download", tooltip:"Exportar", color:"accent",action:"DOWNLOAD"},
@@ -78,9 +82,10 @@ export class PageListComponent implements OnInit {
   constructor(
     private dialog:MatDialog,
     private snackBar:MatSnackBar,
-    private bottomSheet:MatBottomSheet
+    private bottomSheet:MatBottomSheet,
+    private agencyService:AgenciaService
   ) {
-    this.changePage(0)
+    this.loadAgencies()
    }
 
   ngOnInit(): void {
@@ -93,7 +98,7 @@ export class PageListComponent implements OnInit {
   }
 
   openForm(row:any=null){
-
+    this.dialog.open(FormComponent)
   }
 
   delete(id:number){
@@ -130,6 +135,14 @@ export class PageListComponent implements OnInit {
   showBottomSheet(title:string, fileName:string, data:any){
     this.bottomSheet.open(DownloadComponent)
   }
-
+  loadAgencies(){
+    this.agencyService.loadAgencies().subscribe(data => {
+      this.recordsAgency = data
+      this.totalRecords = this.recordsAgency.length
+      this.changePage(0)
+    }, error =>{
+      console.log(error)
+    })
+  }
 
 }
